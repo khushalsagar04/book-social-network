@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/book_social_network
+    username: username
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mail:
+    host: localhost
+    port: 1025
+    username: khushal
+    password: khushal
+    properties:
+#      smtp:
+#      trust: "*"
+#      auth: true
+#      starttls:
+#        enable: true
+#      connectiontimeout: 5000
+#      timeout: 3000
+#      writetimeout: 5000
+
+#        talked about in the video at 55 minutes or so
+        mail:
+          smtp:
+            trust: "*"
+            auth: true
+            starttls:
+              enable: true
+            connectiontimeout: 5000
+            timeout: 3000
+            writetimeout: 5000
+
+#spring.mail.properties.mail.smtp

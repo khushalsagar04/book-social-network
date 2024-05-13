@@ -1,0 +1,73 @@
+#version: '3.8'
+
+services:
+  mysql:
+    container_name: mysql-db-bsn
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: moto5678
+      MYSQL_DATABASE: book_social_network
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  mail-dev:
+    container_name: mail-dev-bsn
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+
+
+#services:
+#  mysql:
+#    container_name: postgres-sql-bsn
+#    image: postgres
+#    environment:
+#      POSTGRES_USER: username
+#      POSTGRES_PASSWORD: password
+#      PGDATA: /var/lib/postgresql/data
+#      POSTGRES_DB: book_social_network
+#    volumes:
+#      - postgres:/data/postgres
+#
+#    ports:
+#      - 5432:5432
+#    networks:
+#      - spring-demo
+#    restart: unless-stopped
+#
+#  mail-dev:
+#    container_name: mail-dev-bsn
+#    image: maildev/maildev
+#    ports:
+#      - 1080:1080
+#      - 1025:1025
+#
+#
+#
+#
+#networks:
+#  spring-demo:
+#    driver: bridge
+#
+#volumes:
+#  postgres:
+#    driver: local
+
+
+
