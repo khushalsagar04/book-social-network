@@ -1,6 +1,8 @@
 package com.khushal.booksocialnetwork.user;
 
 
+import com.khushal.booksocialnetwork.book.Book;
+import com.khushal.booksocialnetwork.history.BookTransactionHistory;
 import com.khushal.booksocialnetwork.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -52,6 +54,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @Override
     public String getName() {
