@@ -1,5 +1,7 @@
 package com.khushal.booksocialnetwork.book;
 
+import com.khushal.booksocialnetwork.file.FileUtils;
+import com.khushal.booksocialnetwork.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,7 +29,19 @@ public class BookMapper {
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
                 .owner(book.getOwner().fullName())
-//                .cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
+                .build();
+    }
+
+    public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory bookTransactionHistory) {
+        return BorrowedBookResponse.builder()
+                .id(bookTransactionHistory.getBook().getId())
+                .title(bookTransactionHistory.getBook().getTitle())
+                .authorName(bookTransactionHistory.getBook().getAuthorName())
+                .isbn(bookTransactionHistory.getBook().getIsbn())
+                .rating(bookTransactionHistory.getBook().getRating())
+                .returned(bookTransactionHistory.isReturned())
+                .returnApproved(bookTransactionHistory.isReturnApproved())
                 .build();
     }
 }
