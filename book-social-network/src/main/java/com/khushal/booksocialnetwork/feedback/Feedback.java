@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @SuperBuilder
 public class Feedback extends BaseEntity {
-    private Double rating;
+    private Double feedback;
 
     private String comment;
 

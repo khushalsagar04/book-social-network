@@ -44,7 +44,7 @@ public class Book extends BaseEntity {
             return 0.0;
         }
         var rating  = this.feedbacks.stream()
-                .mapToDouble(Feedback::getRating)//here we might get an issue. in video at 4:20 hrs
+                .mapToDouble(Feedback::getFeedback)//here we might get an issue. in video at 4:20 hrs
                 .average()
                 .orElse(0.0);
 
